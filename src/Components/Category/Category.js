@@ -15,12 +15,12 @@ const Category = () => {
     <div className="">
       <h1 className="text-2xl font-semibold p-10 text-blue-500">Categories</h1>
 
-      <div className="  grid lg:grid-cols-3 md:grid-cols-2 pb-6">
+      <div className="  grid lg:grid-cols-3 md:grid-cols-2 gap-5 pb-6">
         {categories.map((category) => (
           <div className="card w-60 bg-blue-300 shadow-xl mx-auto ">
             <div className="card-body">
               <div className="card-actions justify-end"></div>
-              <h1>{category.category_Name}</h1>
+              <h1 className="text-lg font-bold">{category.category_Name}</h1>
             </div>
           </div>
         ))}
