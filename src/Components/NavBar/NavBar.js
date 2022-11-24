@@ -13,7 +13,7 @@ const NavBar = () => {
       </li>
       <li className="mr-5 font-bold text-green-700">
         {" "}
-        <Link to="/">Home</Link>
+        <Link to="/login">Login</Link>
       </li>
     </>
   );
