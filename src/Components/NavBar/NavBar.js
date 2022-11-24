@@ -38,7 +38,7 @@ const NavBar = () => {
             </ul>
           </div>
           <Link to="/" className="btn btn-ghost normal-case text-2xl">
-            <img src={logoImg} alt="" />
+            <img src={logoImg} alt="" className="h-14" />
             Gadget-Bazar
           </Link>
         </div>
