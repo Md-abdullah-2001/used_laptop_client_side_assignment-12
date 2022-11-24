@@ -1,15 +1,17 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ContextApi } from "../../Auth/AuthContext";
 
 const SignUp = () => {
   const { createUser, updateUser } = useContext(ContextApi);
   const [signError, setSignError] = useState("");
+  const navigate = useNavigate();
   //   const [createdEmail, setCreatedEmail] = useState("");
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm();
@@ -28,6 +30,8 @@ const SignUp = () => {
         updateUser(userInfo)
           .then((result) => {
             saveUserData(data.name, data.email);
+            reset();
+            navigate("/");
           })
           .catch((er) => console.log(er));
       })
@@ -109,7 +113,7 @@ const SignUp = () => {
     //   </div>
     // </div>
     <div className=" mx-auto h-[580px] flex justify-center items-center ">
-      <div className="w-96 mt-18 ">
+      <div className="w-96 mt-18 shadow-2xl bg-base-100 card pb-4">
         {" "}
         <h1 className="text-5xl font-bold text-center mb-4">SignUp</h1>
         <form className=" mx-auto" onSubmit={handleSubmit(handleSignUp)}>
