@@ -4,9 +4,17 @@ import logoImg from "../../Assets/favicon.svg";
 const NavBar = () => {
   const menuList = (
     <>
-      <li className="mr-5 font-bold text-green-700">Home</li>
-      <li className="mr-5 font-bold text-green-700">Home</li>
-      <li className="mr-5 font-bold text-green-700">Home</li>
+      <li className="mr-5 font-bold text-green-700">
+        <Link to="/">Home</Link>
+      </li>
+      <li className="mr-5 font-bold text-green-700">
+        {" "}
+        <Link to="/">Home</Link>
+      </li>
+      <li className="mr-5 font-bold text-green-700">
+        {" "}
+        <Link to="/">Home</Link>
+      </li>
     </>
   );
   return (
