@@ -1,3 +1,4 @@
+import { success } from "daisyui/src/colors";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -22,14 +23,15 @@ const SignUp = () => {
     createUser(data.email, data.password)
       .then((result) => {
         const user = result.user;
-        toast("User Created successfully.");
+
         console.log(user);
         const userInfo = {
           displayName: data.name,
         };
         updateUser(userInfo)
           .then((result) => {
-            saveUserData(data.name, data.email);
+            saveUserData(data.name, data.email, data.type);
+            toast.success("User Created successfully.");
             reset();
             navigate("/");
           })
@@ -39,8 +41,8 @@ const SignUp = () => {
         console.log(error);
         setSignError(error.message);
       });
-    const saveUserData = (name, email) => {
-      const user = { name, email };
+    const saveUserData = (name, email, type) => {
+      const user = { name, email, type };
       console.log(user);
       //   fetch(`http://localhost:5000/users`, {
       //     method: "POST",
@@ -112,7 +114,7 @@ const SignUp = () => {
     //     </div>
     //   </div>
     // </div>
-    <div className=" mx-auto h-[580px] flex justify-center items-center ">
+    <div className=" mx-auto my-4 h-[580px] flex justify-center items-center ">
       <div className="w-96 mt-18 shadow-2xl bg-base-100 card pb-4">
         {" "}
         <h1 className="text-5xl font-bold text-center mb-4">SignUp</h1>
@@ -149,6 +151,16 @@ const SignUp = () => {
               <p className="text-red-500">{errors.email.message}</p>
             )}
           </div>
+          <div>
+            <select
+              className="p-3 my-2 w-full input input-bordered"
+              {...register("type")}
+            >
+              <option defaultValue={"user"}>user</option>
+              <option value="seller">seller</option>
+            </select>
+          </div>
+
           <div className="form-control w-full ">
             <label className="label">
               {" "}

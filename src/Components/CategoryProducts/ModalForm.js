@@ -1,17 +1,48 @@
 import React, { useContext } from "react";
+import toast from "react-hot-toast";
+
 import { ContextApi } from "../../Auth/AuthContext";
 
-const ModalForm = ({ productData }) => {
+const ModalForm = ({ productData, setProductData }) => {
   const { user } = useContext(ContextApi);
-  console.log(user.email);
+  // console.log(user.email);
   const handleabaooking = (event) => {
     event.preventDefault();
     const form = event.target;
-    const slot = form.slot.value;
+
     const name = form.name.value;
     const email = form.email.value;
     const phone = form.phone.value;
-    console.log(name, email, phone, slot);
+    const location = form.location.value;
+
+    const productBooking = {
+      product_name: productData.name,
+      price: productData.resale_price,
+      location,
+      img: productData.image,
+      email: email,
+      name: name,
+      phone: phone,
+    };
+    console.log(productBooking);
+
+    fetch(`http://localhost:5000/booking`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(productBooking),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.acknowledged) {
+          setProductData(null);
+          toast.success("Booked product successfully");
+        } else {
+          toast.error(data.message);
+        }
+      });
   };
   return (
     <>
@@ -33,12 +64,6 @@ const ModalForm = ({ productData }) => {
               className="input  input-bordered mb-3 w-full "
             />
 
-            <input
-              disabled
-              type="text"
-              value={productData.location}
-              className="input  input-bordered mb-3 w-full "
-            />
             <input
               type="text"
               placeholder="Your Name"
@@ -64,6 +89,13 @@ const ModalForm = ({ productData }) => {
               placeholder="Your Phone"
               name="phone"
               className="input input-bordered mb-3 w-full "
+            />
+            <input
+              required
+              type="text"
+              name="location"
+              placeholder="Meeting Location"
+              className="input  input-bordered mb-3 w-full "
             />
             <br />
             <input

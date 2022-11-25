@@ -15,14 +15,16 @@ const auth = getAuth(app);
 const AuthContext = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loader, setLoader] = useState(true);
-  // create user
 
+  // create user
   const createUser = (email, password) => {
+    setLoader(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   // sign in with google
   const googleProvider = (provider) => {
+    setLoader(true);
     return signInWithPopup(auth, provider);
   };
 

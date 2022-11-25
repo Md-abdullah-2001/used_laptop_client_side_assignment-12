@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ContextApi } from "../../Auth/AuthContext";
 import { useForm } from "react-hook-form";
 import { GoogleAuthProvider } from "firebase/auth";
@@ -10,8 +10,11 @@ const Login = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+
   const { logUserIn, googleProvider } = useContext(ContextApi);
   const [logError, setLogError] = useState("");
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const [newEmail, setNewEmail] = useState("");
   const navigate = useNavigate();
   const provider = new GoogleAuthProvider();
@@ -19,7 +22,7 @@ const Login = () => {
     googleProvider(provider)
       .then((result) => {
         const user = result.user;
-        // navigate(from, { replace: true });
+        navigate(from, { replace: true });
       })
       .catch((error) => console.error(error));
   };
@@ -31,8 +34,8 @@ const Login = () => {
         const user = result.user;
         console.log(user);
         setNewEmail(data.email);
-        reset();
-        navigate("/");
+
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error.message);
