@@ -4,6 +4,7 @@ import {
   getAuth,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
   updateProfile,
 } from "firebase/auth";
@@ -18,6 +19,11 @@ const AuthContext = ({ children }) => {
 
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
+  };
+
+  // sign in with google
+  const googleProvider = (provider) => {
+    return signInWithPopup(auth, provider);
   };
 
   // login
@@ -43,7 +49,15 @@ const AuthContext = ({ children }) => {
     });
     return () => unsubscribe();
   }, []);
-  const infoAll = { loader, createUser, logUserIn, logOut, user, updateUser };
+  const infoAll = {
+    loader,
+    createUser,
+    logUserIn,
+    googleProvider,
+    logOut,
+    user,
+    updateUser,
+  };
   return <ContextApi.Provider value={infoAll}>{children}</ContextApi.Provider>;
 };
 

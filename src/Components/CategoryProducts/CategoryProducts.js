@@ -1,33 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import ModalForm from "./ModalForm";
+import SingleProduct from "./SingleProduct";
 
 const CategoryProducts = () => {
+  const [productData, setProductData] = useState(null);
   const products = useLoaderData();
 
   // const { image, name, location, resale_price, original_price, use_year } =
   //   products;
 
   return (
-    <div>
-      {products.map((product) => (
-        <div className="card w-96 bg-base-100 shadow-xl">
-          <figure>
-            <img src={product.image} alt="Shoes" />
-          </figure>
-          <div className="card-body">
-            <h2 className="card-title">
-              Shoes!
-              <div className="badge badge-secondary">NEW</div>
-            </h2>
-            <p>{product.name}</p>
-            <div className="card-actions justify-end">
-              <div className="badge badge-outline">{product.location}</div>
-              <div className="badge badge-outline">{product.resale_price}</div>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
+    <section>
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-5 m-8 ">
+        {products.map((product) => (
+          <SingleProduct
+            product={product}
+            setProductData={setProductData}
+          ></SingleProduct>
+        ))}
+      </div>
+      {productData && (
+        <ModalForm
+          productData={productData}
+          setProductData={setProductData}
+        ></ModalForm>
+      )}
+    </section>
   );
 };
 

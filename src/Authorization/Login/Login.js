@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ContextApi } from "../../Auth/AuthContext";
 import { useForm } from "react-hook-form";
+import { GoogleAuthProvider } from "firebase/auth";
 const Login = () => {
   const {
     register,
@@ -9,10 +10,20 @@ const Login = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const { logUserIn } = useContext(ContextApi);
+  const { logUserIn, googleProvider } = useContext(ContextApi);
   const [logError, setLogError] = useState("");
   const [newEmail, setNewEmail] = useState("");
   const navigate = useNavigate();
+  const provider = new GoogleAuthProvider();
+  const signInSubmitGoogle = () => {
+    googleProvider(provider)
+      .then((result) => {
+        const user = result.user;
+        // navigate(from, { replace: true });
+      })
+      .catch((error) => console.error(error));
+  };
+
   const handleLogin = (data) => {
     setLogError("");
     logUserIn(data.email, data.password)
@@ -76,12 +87,13 @@ const Login = () => {
             </Link>
             <h4 className="divider">or</h4>
           </p>
-          <input
-            className="btn btn-outline w-full"
-            type="submit"
-            value="Sign in with Google"
-          />
         </form>
+        <button
+          onClick={signInSubmitGoogle}
+          className="btn btn-outline  w-5/6 mx-auto"
+        >
+          Sign in with Google
+        </button>
       </div>
     </div>
   );
