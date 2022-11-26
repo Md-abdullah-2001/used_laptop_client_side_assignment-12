@@ -33,7 +33,6 @@ const SignUp = () => {
             saveUserData(data.name, data.email, data.type);
             toast.success("User Created successfully.");
             reset();
-            navigate("/");
           })
           .catch((er) => console.log(er));
       })
@@ -44,19 +43,30 @@ const SignUp = () => {
     const saveUserData = (name, email, type) => {
       const user = { name, email, type };
       console.log(user);
-      //   fetch(`http://localhost:5000/users`, {
-      //     method: "POST",
-      //     headers: {
-      //       "content-type": "application/json",
-      //     },
-      //     body: JSON.stringify(user),
-      //   })
-      //     .then((res) => res.json())
-      //     .then((data) => {
-      //       console.log(data);
-      //       setCreatedEmail(email);
-      //     });
+      fetch(`http://localhost:5000/users`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(user),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          getToken(email);
+        });
     };
+  };
+
+  const getToken = (email) => {
+    fetch(`http://localhost:5000/jwt?email=${email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.accessToken) {
+          localStorage.setItem("accessToken", data.accessToken);
+          navigate("/");
+        }
+      });
   };
   return (
     // <div className="hero min-h-screen bg-base-200">

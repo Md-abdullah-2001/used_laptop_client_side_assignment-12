@@ -22,6 +22,8 @@ const Login = () => {
     googleProvider(provider)
       .then((result) => {
         const user = result.user;
+        const type = "user";
+        saveUserData(user.displayName, user.email, type);
         navigate(from, { replace: true });
       })
       .catch((error) => console.error(error));
@@ -40,6 +42,22 @@ const Login = () => {
       .catch((error) => {
         console.log(error.message);
         setLogError(error.message);
+      });
+  };
+
+  const saveUserData = (name, email, type) => {
+    const user = { name, email, type };
+    console.log(user);
+    fetch(`http://localhost:5000/users`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
       });
   };
   return (
