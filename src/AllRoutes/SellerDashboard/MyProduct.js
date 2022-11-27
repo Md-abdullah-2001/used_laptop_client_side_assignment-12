@@ -20,19 +20,24 @@ const MyProduct = () => {
         <table className="table table-zebra w-full">
           <thead>
             <tr>
-              <th></th>
-              <th>Name</th>
+              <th>img</th>
+
+              <th>Price</th>
               <th>Job</th>
-              <th>Favorite Color</th>
+              <th>Status</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
-            {products.map((product, i) => (
+            {products.map((product) => (
               <tr key={product._id}>
-                <th>{i + 1}</th>
-                <td>{product.name}</td>
-                <td>{product.price}</td>
                 <td>{product.image}</td>
+
+                <td>${product.price}</td>
+                <td>available</td>
+                <td>
+                  <button>Advertise</button>
+                </td>
               </tr>
             ))}
           </tbody>
