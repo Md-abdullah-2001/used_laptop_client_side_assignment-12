@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { ContextApi } from "../../Auth/AuthContext";
+
 import NavBar from "../../Components/NavBar/NavBar";
 import useAdmin from "../../Hooks/useAdmin";
 
@@ -31,7 +32,7 @@ const DashBoardLayout = () => {
             {isUser === "seller" && (
               <li>
                 <Link to="/dashboard/addproduct">Add products</Link>
-                <Link to="/dashboard/myorders">My products</Link>
+                <Link to="/dashboard/myproducts">My products</Link>
               </li>
             )}
             {isUser === "admin" && (

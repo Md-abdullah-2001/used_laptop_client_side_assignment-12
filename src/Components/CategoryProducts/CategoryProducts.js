@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
+
 import ModalForm from "./ModalForm";
 import SingleProduct from "./SingleProduct";
 
 const CategoryProducts = () => {
   const [productData, setProductData] = useState(null);
-  const products = useLoaderData();
 
-  // const { image, name, location, resale_price, original_price, use_year } =
-  //   products;
+  const products = useLoaderData();
+  console.log(products);
+  //
 
   return (
     <section>
