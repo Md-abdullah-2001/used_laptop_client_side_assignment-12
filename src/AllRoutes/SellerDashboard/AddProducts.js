@@ -1,8 +1,12 @@
-import React from "react";
-import { useForm } from "react-hook-form";
+import { format } from "date-fns";
+import React, { useContext } from "react";
+
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { ContextApi } from "../../Auth/AuthContext";
 const AddProducts = () => {
+  const { user } = useContext(ContextApi);
+
   const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -17,10 +21,15 @@ const AddProducts = () => {
     const description = form.description.value;
 
     form.reset();
+    const date = new Date();
+    const dateFormate = format(date, "PP");
+    console.log(dateFormate);
     const product = {
       name,
-      img,
+      image: img,
+      email: user.email,
       category_Name: category,
+      posted_time: dateFormate,
       price,
       location,
       description,
@@ -45,59 +54,6 @@ const AddProducts = () => {
   };
 
   return (
-    // <div className="mr-12 my-4 h-[580px] flex justify-center items-center ">
-    //   <div className="w-96 mt-18 shadow-2xl bg-base-100 card pb-8">
-    //     {" "}
-    //     <h1 className="text-5xl font-bold text-center mb-4">Add Product</h1>
-    //     <form className=" mx-auto" onClick={handleSubmit(handleSignUp)}>
-    //       <div className="form-control w-full ">
-    //         <label className="label">
-    //           {" "}
-    //           <span className="label-text"> Product Name</span>
-    //         </label>
-    //         <input
-    //           type="text"
-    //           {...register("name", {
-    //             required: "Name must be typed",
-    //           })}
-    //           className="input input-bordered w-full "
-    //         />
-    //         {errors.name && (
-    //           <p className="text-red-500">{errors.name.message}</p>
-    //         )}
-    //       </div>
-    //       <div className="form-control w-full ">
-    //         <label className="label">
-    //           {" "}
-    //           <span className="label-text">Price</span>
-    //         </label>
-    //         <input
-    //           type="number"
-    //           {...register("price", {
-    //             required: "price is required",
-    //           })}
-    //           className="input input-bordered w-full "
-    //         />
-    //         {errors.price && (
-    //           <p className="text-red-500">{errors.price.message}</p>
-    //         )}
-    //       </div>
-    //       <div>
-    //         <select
-    //           className="p-3 my-2 w-full input input-bordered"
-    //           {...register("type")}
-    //         >
-    //           <option value="Good">Good</option>
-    //           <option value="Excellent">Excellent</option>
-    //           <option value="Fair">Fair</option>
-    //         </select>
-    //       </div>
-
-    //       <label className="label"> </label>
-    //       <input className="btn btn-accent w-full mt-8" type="submit" />
-    //     </form>
-    //   </div>
-    // </div>
     <form onSubmit={handleSubmit} className="card-body mx-16 -scroll-my-8">
       <h1 className="text-5xl text-center font-bold">Add Product</h1>
       <div className="form-control">
@@ -119,27 +75,29 @@ const AddProducts = () => {
         rows="4"
         cols="50"
       ></textarea>
-      <div className="form-control">
-        <label className="label">
-          <span className="label-text">Price</span>
-        </label>
-        <input
-          type="number"
-          placeholder=" Price"
-          name="price"
-          className="input input-bordered"
-        />
-      </div>
-      <div className="form-control">
-        <label className="label">
-          <span className="label-text">Mobile Number</span>
-        </label>
-        <input
-          type="number"
-          placeholder=" Mobile"
-          name="mobile"
-          className="input input-bordered"
-        />
+      <div className=" lg:flex ">
+        <div className="form-control w-1/2">
+          <label className="label">
+            <span className="label-text">Price</span>
+          </label>
+          <input
+            type="number"
+            placeholder=" Price"
+            name="price"
+            className="input input-bordered"
+          />
+        </div>
+        <div className="form-control w-1/2">
+          <label className="label">
+            <span className="label-text">Mobile Number</span>
+          </label>
+          <input
+            type="number"
+            placeholder=" Mobile"
+            name="mobile"
+            className="input input-bordered"
+          />
+        </div>
       </div>
       <div className="form-control">
         <label className="label">
@@ -152,24 +110,29 @@ const AddProducts = () => {
           className="input input-bordered"
         />
       </div>
-      <div>
-        <select
-          name="category"
-          className="p-3 my-2 w-full input input-bordered"
-        >
-          <option selected>Select category</option>
-          <option value="Apple">Apple</option>
-          <option value="Dell">Dell</option>
-          <option value="Lenovo">Lenovo</option>
-        </select>
-      </div>
-      <div>
-        <select name="option" className="p-3 my-2 w-full input input-bordered">
-          <option selected>Choose review</option>
-          <option value="Excellent">Excellent</option>
-          <option value="Good">Good</option>
-          <option value="Fair">Fair</option>
-        </select>
+      <div className="lg:flex">
+        <div className="w-1/2">
+          <select
+            name="category"
+            className="p-3 my-2 w-full input input-bordered"
+          >
+            <option selected>Select category</option>
+            <option value="Apple">Apple</option>
+            <option value="Dell">Dell</option>
+            <option value="Lenovo">Lenovo</option>
+          </select>
+        </div>
+        <div className="w-1/2">
+          <select
+            name="option"
+            className="p-3 my-2 w-full input input-bordered"
+          >
+            <option selected>Choose review</option>
+            <option value="Excellent">Excellent</option>
+            <option value="Good">Good</option>
+            <option value="Fair">Fair</option>
+          </select>
+        </div>
       </div>
       <div className="form-control">
         <label className="label">
