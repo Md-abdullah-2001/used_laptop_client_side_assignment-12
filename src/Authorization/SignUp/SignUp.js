@@ -1,4 +1,3 @@
-import { success } from "daisyui/src/colors";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -43,7 +42,7 @@ const SignUp = () => {
     const saveUserData = (name, email, type) => {
       const user = { name, email, type };
       console.log(user);
-      fetch(`http://localhost:5000/users`, {
+      fetch(`https://assignment-12-server-side-chi.vercel.app/users`, {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -59,7 +58,7 @@ const SignUp = () => {
   };
 
   const getToken = (email) => {
-    fetch(`http://localhost:5000/jwt?email=${email}`)
+    fetch(`https://assignment-12-server-side-chi.vercel.app/jwt?email=${email}`)
       .then((res) => res.json())
       .then((data) => {
         if (data.accessToken) {

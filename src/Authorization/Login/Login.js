@@ -48,7 +48,7 @@ const Login = () => {
   const saveUserData = (name, email, type) => {
     const user = { name, email, type };
     console.log(user);
-    fetch(`http://localhost:5000/users`, {
+    fetch(`https://assignment-12-server-side-chi.vercel.app/users`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

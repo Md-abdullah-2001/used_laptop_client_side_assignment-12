@@ -7,7 +7,9 @@ const MyProduct = () => {
   const { data: products = [] } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/seller/${user.email}`);
+      const res = await fetch(
+        `https://assignment-12-server-side-chi.vercel.app/seller/${user.email}`
+      );
       const data = await res.json();
       return data;
     },
@@ -31,10 +33,16 @@ const MyProduct = () => {
           <tbody>
             {products.map((product) => (
               <tr key={product._id}>
-                <td>{product.image}</td>
+                <td>
+                  <img
+                    className="w-10  rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 h-9"
+                    src={product.image}
+                    alt=""
+                  />
+                </td>
 
-                <td>${product.price}</td>
-                <td>{}</td>
+                <td>${product.resale_price}</td>
+                <td></td>
                 <td>
                   <button>Advertise</button>
                 </td>

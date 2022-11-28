@@ -5,7 +5,7 @@ import { ContextApi } from "../../../Auth/AuthContext";
 
 const MyOrders = () => {
   const { user } = useContext(ContextApi);
-  const url = `http://localhost:5000/booking?email=${user?.email}`;
+  const url = `https://assignment-12-server-side-chi.vercel.app/booking?email=${user?.email}`;
 
   const { data: bookings = [] } = useQuery({
     queryKey: ["booking", user?.email],

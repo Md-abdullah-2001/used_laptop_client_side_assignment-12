@@ -1,8 +1,8 @@
 # Getting Started with Gadget-Bazar used product site:
 
 ## Live site Link :
-## Admin Email: 
-## Admin Password: 
+## Admin Email: admin@gmail.com
+## Admin Password: $123456789
 
 ## Technologies 
 

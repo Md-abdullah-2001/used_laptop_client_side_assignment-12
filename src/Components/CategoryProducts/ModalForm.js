@@ -26,7 +26,7 @@ const ModalForm = ({ productData, setProductData }) => {
     };
     console.log(productBooking);
 
-    fetch(`http://localhost:5000/booking`, {
+    fetch(`https://assignment-12-server-side-chi.vercel.app/booking`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -11,11 +11,14 @@ const CheckoutPay = ({ data }) => {
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    fetch(`http://localhost:5000/create-payment-intent`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ price }),
-    })
+    fetch(
+      `https://assignment-12-server-side-chi.vercel.app/create-payment-intent`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ price }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
   }, [price]);
@@ -73,7 +76,7 @@ const CheckoutPay = ({ data }) => {
         bookingId: _id,
         transaction: paymentIntent.id,
       };
-      fetch(`http://localhost:5000/payments`, {
+      fetch(`https://assignment-12-server-side-chi.vercel.app/payments`, {
         method: "POST",
         headers: {
           "content-type": "application/json",
