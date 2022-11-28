@@ -3,7 +3,7 @@ import React from "react";
 const SingleProduct = ({ product, setProductData }) => {
   const {
     image,
-    name,
+    product_name,
     location,
     resale_price,
     original_price,
@@ -18,8 +18,8 @@ const SingleProduct = ({ product, setProductData }) => {
         <img className="h-[250px]" w-full src={image} alt="Shoes" />
       </figure>
       <div className="card-body">
-        <h2 className="card-title text-center">{name}</h2>
-        <p></p>
+        <h2 className="card-title text-center">{product_name}</h2>
+
         <div className="card-actions justify-start">
           <div className="badge badge-outline">{location}</div>
           <div className="badge badge-outline">Posted: {posted_time}</div>

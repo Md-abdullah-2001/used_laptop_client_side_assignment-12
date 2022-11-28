@@ -5,7 +5,7 @@ import { ContextApi } from "../../Auth/AuthContext";
 
 const ModalForm = ({ productData, setProductData }) => {
   const { user } = useContext(ContextApi);
-  // console.log(user.email);
+  console.log(productData);
   const handleabaooking = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -16,7 +16,7 @@ const ModalForm = ({ productData, setProductData }) => {
     const location = form.location.value;
 
     const productBooking = {
-      product_name: productData.name,
+      product_name: productData.product_name,
       price: productData.resale_price,
       location,
       img: productData.image,

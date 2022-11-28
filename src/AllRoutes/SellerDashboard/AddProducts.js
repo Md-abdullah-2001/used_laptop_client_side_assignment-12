@@ -25,7 +25,7 @@ const AddProducts = () => {
     const dateFormate = format(date, "PP");
     console.log(dateFormate);
     const product = {
-      name,
+      product_name: name,
       image: img,
       email: user.email,
       category_Name: category,
@@ -138,12 +138,7 @@ const AddProducts = () => {
         <label className="label">
           <span className="label-text">Photo URL</span>
         </label>
-        <input
-          type="text"
-          placeholder="Photo URL"
-          name="photo"
-          className="input input-bordered"
-        />
+        <input type="file" name="photo" className="input input-bordered" />
       </div>
 
       <div className="form-control mt-6">

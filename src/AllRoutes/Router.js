@@ -4,11 +4,13 @@ import SignUp from "../Authorization/SignUp/SignUp";
 import Blogs from "../Blogs/Blogs";
 import CategoryProducts from "../Components/CategoryProducts/CategoryProducts";
 import Home from "../Components/Home/Home";
+import ErrorPage from "../ErrorPage/ErrorPage";
 import AllBuyer from "./DashBoardLayout/AllUsers/AllBuyer";
 import AllSeller from "./DashBoardLayout/AllUsers/AllSeller";
 
 import DashBoardLayout from "./DashBoardLayout/DashBoardLayout";
 import MyOrders from "./DashBoardLayout/MyOrders/MyOrders";
+import Payment from "./DashBoardLayout/Payment/Payment";
 import AdminRoute from "./Main/AdminRoute";
 import Main from "./Main/Main";
 import PrivateRoute from "./PrivateRoute";
@@ -19,6 +21,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       { path: "/", element: <Home></Home> },
       { path: "/blogs", element: <Blogs></Blogs> },
@@ -38,12 +41,20 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
+    errorElement: <ErrorPage></ErrorPage>,
     element: (
       <PrivateRoute>
         <DashBoardLayout></DashBoardLayout>
       </PrivateRoute>
     ),
     children: [
+      {
+        path: "/dashboard/payment/:id",
+        element: <Payment></Payment>,
+        loader: ({ params }) => {
+          return fetch(`http://localhost:5000/booking/${params.id}`);
+        },
+      },
       {
         path: "/dashboard/myorders",
         element: <MyOrders></MyOrders>,
@@ -64,7 +75,14 @@ export const router = createBrowserRouter([
           </AdminRoute>
         ),
       },
-      { path: "/dashboard/allsellers", element: <AllSeller></AllSeller> },
+      {
+        path: "/dashboard/allsellers",
+        element: (
+          <AdminRoute>
+            <AllSeller></AllSeller>
+          </AdminRoute>
+        ),
+      },
     ],
   },
 ]);
