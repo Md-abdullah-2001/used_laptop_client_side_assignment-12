@@ -1,8 +1,8 @@
 # Getting Started with Gadget-Bazar used product site:
 
 ## Live site Link : https://gadgetbazar-e8671.web.app/
-## Admin Email: admin@gmail.com
-## Admin Password: $123456789
+## adminEmail:<admin@gmail.com>
+## adminPassword:<$123456789>
 
 ## Technologies 
 
