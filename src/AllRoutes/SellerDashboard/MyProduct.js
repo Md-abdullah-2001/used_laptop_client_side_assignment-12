@@ -34,7 +34,7 @@ const MyProduct = () => {
                 <td>{product.image}</td>
 
                 <td>${product.price}</td>
-                <td>available</td>
+                <td>{}</td>
                 <td>
                   <button>Advertise</button>
                 </td>

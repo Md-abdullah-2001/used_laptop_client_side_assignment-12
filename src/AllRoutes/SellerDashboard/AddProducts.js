@@ -30,8 +30,9 @@ const AddProducts = () => {
       email: user.email,
       category_Name: category,
       posted_time: dateFormate,
-      price,
+      resale_price: price,
       location,
+      seller: user.displayName,
       description,
       mobile,
       review,
@@ -48,6 +49,7 @@ const AddProducts = () => {
       .then((data) => {
         console.log(data);
         toast.success(`Product added to category${category}`);
+        toast.success("Product added successfully");
         navigate("/dashboard/myproducts");
       })
       .catch((err) => console.log(err));
@@ -138,7 +140,12 @@ const AddProducts = () => {
         <label className="label">
           <span className="label-text">Photo URL</span>
         </label>
-        <input type="file" name="photo" className="input input-bordered" />
+        <input
+          type="text"
+          required
+          name="photo"
+          className="input input-bordered"
+        />
       </div>
 
       <div className="form-control mt-6">

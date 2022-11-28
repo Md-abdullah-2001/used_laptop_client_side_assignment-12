@@ -204,13 +204,7 @@ const SignUp = () => {
             <Link className="text-primary" to="/login">
               Please Login
             </Link>
-            <h4 className="divider">or</h4>
           </p>
-          <input
-            className="btn btn-outline w-full"
-            type="submit"
-            value="Sign in with Google"
-          />
         </form>
       </div>
     </div>
