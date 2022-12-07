@@ -1,12 +1,25 @@
 import React from "react";
-import heroImg1 from "../../Assets/img2.jpg";
-import heroImg2 from "../../Assets/img1.jpg";
-import heroImg3 from "../../Assets/img3.jpg";
+import heroImg1 from "../../Assets/istockphoto-1182241805-612x612.jpg";
+
 const Hero = () => {
   return (
-    <div className="hero min-h-fit bg-base-200">
-      <div className="hero-content ">
-        <div className="carousel w-full">
+    <div className="hero min-h-fit " style={{ backgroundColor: "#FFFFFF" }}>
+      <div className="hero-content p-8">
+        <div className="hero  my-16 ">
+          <div className="flex flex-col lg:flex-row-reverse items-center">
+            <img
+              alt="/"
+              src={heroImg1}
+              className="max-w-2xl rounded-lg animate-pulse   w-4/5"
+            />
+            <div className="w-full">
+              <h1 className="text-6xl font-bold text-start my-auto">
+                Welcome to the Country's Biggest used product Shop..
+              </h1>
+            </div>
+          </div>
+        </div>
+        {/* <div className="carousel w-full">
           <div id="slide1" className="carousel-item relative w-full">
             <img
               src={heroImg1}
@@ -52,7 +65,7 @@ const Hero = () => {
               </a>
             </div>
           </div>
-        </div>
+        </div> */}
         {/* <div className="ml-8">
           <h1 className="text-4xl  font-bold">
             Buy Laptops in 50% off <br /> From Gadget-Bazar

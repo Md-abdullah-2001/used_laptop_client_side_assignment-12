@@ -11,14 +11,14 @@ const NavBar = () => {
   };
   const menuList = (
     <>
-      <li className="mr-5 font-bold text-green-700">
+      <li className="mr-5 font-bold lg:text-white">
         <Link to="/">Home</Link>
       </li>
-      <li className="mr-5 font-bold text-green-700">
+      <li className="mr-5 font-bold lg:text-white">
         <Link to="/blogs">Blogs</Link>
       </li>
 
-      <li className="mr-5 font-bold text-green-700">
+      <li className="mr-5 font-bold lg:text-white">
         {" "}
         {user?.uid ? (
           <>
@@ -33,8 +33,8 @@ const NavBar = () => {
     </>
   );
   return (
-    <div>
-      <div className="navbar bg-blue-400 ">
+    <div className="relative">
+      <div className="navbar shadow-md bg-blue-200  fixed top-0 z-10 ">
         <div className="navbar-start container mx-auto">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">

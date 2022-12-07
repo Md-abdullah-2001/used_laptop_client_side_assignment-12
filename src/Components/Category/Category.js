@@ -18,7 +18,10 @@ const Category = () => {
 
       <div className="  grid lg:grid-cols-3 md:grid-cols-2 gap-5 pb-6">
         {categories.map((category) => (
-          <Link to={`/category/${category.category_Name}`}>
+          <Link
+            className="animate-bounce"
+            to={`/category/${category.category_Name}`}
+          >
             <div className="card btn  w-60 bg-blue-300 shadow-xl mx-auto ">
               <div className="card-body">
                 <div className="card-actions justify-end"></div>
